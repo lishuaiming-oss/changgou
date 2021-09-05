@@ -13,8 +13,6 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 @SpringBootApplication
 @EnableEurekaServer   //开启Eureka服务
 public class EurekaApplication {
-
-    
     /*
     *
     * 加载启动类，已启动类为springboot的配置标准
