@@ -34,12 +34,23 @@ public class BrandController {
     private BrandService brandService;
 
     /*
+    *  分页+条件
+    * */
+    @PostMapping(value = "/search/{page}/{size}")
+    public Result<PageInfo<Brand>> findPage(@RequestBody Brand brand, @PathVariable Integer page, @PathVariable Integer size){
+        //分页查询
+        PageInfo<Brand> pageInfo = brandService.findPage(brand,page, size);
+        return new Result<PageInfo<Brand>>(true,StatusCode.OK,"分页+条件结果查询成功",pageInfo);
+    }
+
+
+    /*
     *  分页查询
     *  @Params page size
     *
     * */
     @GetMapping(value = "/search/{page}/{size}")
-   public Result<PageInfo<Brand>> findPage(@PathVariable Integer page,@PathVariable Integer size){
+   public Result<PageInfo<Brand>> findPage(@PathVariable Integer page, @PathVariable Integer size){
         //分页查询
         PageInfo<Brand> pageInfo = brandService.findPage(page, size);
         return new Result<PageInfo<Brand>>(true,StatusCode.OK,"分页查询成功",pageInfo);

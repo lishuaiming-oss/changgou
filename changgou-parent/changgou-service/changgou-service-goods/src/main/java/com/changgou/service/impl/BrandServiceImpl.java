@@ -25,6 +25,24 @@ public class BrandServiceImpl implements BrandService {
     @Autowired
     private BrandMapper brandMapper;
 
+    /**
+     * @return * @return: null
+     * @Description: 分页+查询
+     * @Author: L
+     * @Date: 2021/11/5 14:45
+     * @Params * @param brand page,size:
+     **/
+    @Override
+    public PageInfo<Brand> findPage(Brand brand, Integer page, Integer size) {
+        //分页
+        PageHelper.startPage(page,size);
+        //按条件查询 if !name=null 按名字搜索 ，if ！letter=null 按首字母搜索
+        Example example = createExample(brand); //自定义搜索条件
+        //使用通用Mapper进行数据查询
+        List<Brand> brands = brandMapper.selectByExample(example);
+        //封装到PageInfo
+        return new PageInfo<Brand>(brands);
+    }
 
     @Override
     public PageInfo<Brand> findPage(Integer page, Integer size) {

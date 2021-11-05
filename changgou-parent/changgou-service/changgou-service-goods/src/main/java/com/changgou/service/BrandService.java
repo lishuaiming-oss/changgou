@@ -15,6 +15,14 @@ import java.util.List;
 
 public interface BrandService {
 
+
+
+    /*
+    *  条件查询+分页
+    *  @params Brand brand page,size
+    * */
+    PageInfo<Brand> findPage(Brand brand,Integer page,Integer size);
+
     /*
     *  分页查询
     *  @params page ,size
